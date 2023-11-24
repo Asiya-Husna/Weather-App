@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOG IN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/fe6df05723.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(36, 94, 154);
+        }
+
+        .container {
+            position: relative;
+            max-width: 370px;
+            width: 100%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .container header {
+            font-size: 24px;
+            font-weight: 600;
+            color: rgb(36, 94, 154);
+        }
+        .container header div{
+            text-align: center;
+        }
+        .container form {
+            margin-top: 25px;
+        }
+
+        form .field {
+            margin-bottom: 13px;
+        }
+
+        form .input-field {
+            position: relative;
+            width: 100%;
+            height: 55px;
+        }
+
+        .input-field input {
+            outline: none;
+            border: none;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #d1d1d1;
+            border-radius: 6px;
+            padding: 0 15px;
+        }
+
+        .field .error {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: red;
+            padding: 6px 1px;
+            display: none;
+        }
+
+        .error .email-icon {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+
+        .input-field .show-hide {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .create-password .error {
+            align-items: flex-start;
+        }
+
+        .button {
+            outline: none;
+            border: none;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #d1d1d1;
+            border-radius: 6px;
+            padding: 0 15px;
+            margin: 25px 0 6px;
+            background-color: rgb(36, 94, 154);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button a {
+            text-decoration: none;
+            display: block;
+            background-color: rgb(36, 94, 154);
+            font-size: 16px;
+            font-weight: 400;
+            color: white;
+            cursor: pointer;
+            transition: all 0.5s ease-out;
+        }
+
+        .button a:hover {
+            background-color: rgb(36, 94, 154);
+        }
+
+        .invalid .error {
+            display: flex;
+        }
+
+        .invalid a {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header><div>
+            <i class="fa-solid fa-cloud fa-2xl" style="color: rgb(36, 94, 154)"></i>
+            <span class="logo-text">Weather</span>
+        </div></header>
+        <form action="">
+            <div class="field email-field">
+                <div class="input-field ">
+                    <input type="text" name="email" placeholder="Enter your email" class="email" autocomplete="off">
+                </div>
+                <span class="error email-error">
+                    <i class='bx bx-error-circle email-icon'></i>
+                    <p class="error-text">Email is not valid</p>
+                </span>
+            </div>
+
+            <div class="field create-password">
+                <div class="input-field ">
+                    <input type="password" name="password" placeholder="Enter Password" class="password">
+                    <i class='bx bx-hide show-hide'></i>
+                </div>
+                <span class="error password-error">
+                    <i class='bx bx-error-circle email-icon'></i>
+                    <p class="error-text">Enter atleast 8 characters of small, capital, number and symbol</p>
+                </span>
+            </div>
+
+            <div class="input-field button">
+                <a href="#" type="submit" id="loginButton">Submit</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+
+        const form = document.querySelector('form'),
+            emailField = form.querySelector('.email-field'),
+            emailInput = emailField.querySelector('.email'),
+            passField = form.querySelector('.create-password'),
+            passInput = passField.querySelector('.password'),
+            cpassField = form.querySelector('.confirm-password');
+
+
+        //Email Validation
+        function checkEmail() {
+            const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!emailInput.value.match(pattern)) {
+                return emailField.classList.add('invalid');
+            }
+            emailField.classList.remove('invalid');
+        }
+
+        //Hide/Show
+        const eyeIcons = document.querySelectorAll('.show-hide');
+        eyeIcons.forEach(eyeIcon => {
+            eyeIcon.addEventListener('click', () => {
+
+                const eyeInput = eyeIcon.parentElement.querySelector('input');
+
+                if (eyeInput.type === 'password') {
+                    eyeIcon.classList.replace('bx-hide', 'bx-show');
+                    return eyeInput.type = 'text';
+                }
+                eyeIcon.classList.replace('bx-show', 'bx-hide');
+                eyeInput.type = 'password';
+            })
+        })
+
+        //Password Validation
+        function createPass() {
+            const passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (!passInput.value.match(passPattern)) {
+                return passField.classList.add('invalid')
+            }
+            passField.classList.remove('invalid');
+        }
+
+
+
+        //Calling Function on form submit
+        form.addEventListener('click', (e) => {
+            e.preventDefault(); //preventing form submission
+            checkEmail();
+            createPass();
+
+            //Calling Function on keyup
+            emailInput.addEventListener('keyup', checkEmail);
+            passInput.addEventListener('keyup', createPass);
+
+            if (!emailField.classList.contains('invalid') &&
+                !passField.classList.contains('invalid')) {
+                    
+                const userEmail = document.querySelector('.email').value;
+
+                // Construct the URL with the email parameter
+                const redirectUrl = `index.html?email=${encodeURIComponent(userEmail)}`;
+
+                // Redirect the user to the weather app page with the email parameter
+                window.location.href = redirectUrl;
+            }
+        })
+    </script>
+</body>
+
+</html>

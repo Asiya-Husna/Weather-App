@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+/* utility classes */
+.f-400{
+  font-weight: 400;
+}
+.f-500{
+  font-weight: 500;
+}
+.f-600{
+  font-weight: 600;
+}
+.f-800{
+  font-weight: 800;
+}
+.font-50{
+  font-size: 50px;
+    font-weight: 500;
+}
+.font-25 {
+  font-size: 25px;
+  font-weight: 100;
+}
+.font-20 {
+  font-size: 20px;
+}
+
+/* Background Image */
+.bg-home {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-position: left;
+}
+
+/* Navigation Bar */
+.navbar {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 3%;
+  background: rgba(36, 94, 154,0.6);
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-left: 1px;
+}
+.right-nav {
+  display: flex;
+  align-items: center;
+}
+.search-card {
+  padding: 0 10px 0 0;
+  border-right: 1px solid grey;
+}
+.search {
+  width: 215px;
+  display: flex;
+  align-items: center;
+  padding: 2px 0px;
+  background: white;
+  border-radius: 5px;
+}
+.search input {
+  width: 80%;
+  border: 0;
+  outline: none;
+  padding: 0 0 0 5px;
+  font-size: 16px;
+}
+
+.search button {
+  background: transparent;
+  border: 0;
+  outline: none;
+  height: 30px;
+  width: 37px;
+  cursor: pointer;
+}
+.search button img {
+  width: 20px;
+}
+.geo-location {
+  margin-left: 5px;
+  cursor: pointer;
+}
+.navbar #signout a {
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  color: rgb(36, 94, 154);
+  font-size: 16px;
+}
+.navbar #signout {
+  background-color: white;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.4s ease;
+}
+.navbar #signout:hover{
+  background-color: aquamarine;
+}
+.navbar .logo-signout {
+  display: none;
+}
+.responsive-nav {
+  display: none;
+}
+
+/* current weather */
+.current-weather-bg {
+  background: rgba(36, 94, 154, 0.6);
+  border-radius: 10px;
+}
+
+#defaultButton {
+  background-color: rgb(36, 94, 154);
+  max-width: 150px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+#defaultButton:hover{
+  background-color: rgba(36, 94, 154,0.4);
+}
+
+/* future weather forecast */
+.card {
+  background: rgba(36, 94, 154, 0.6);
+  max-width: 292px;
+  width: 100%;
+ 
+}
+.scroll-cards {
+ width: 910px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+.scroll-cards::-webkit-scrollbar{
+  display: none;
+}
+
+.angle{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(36, 94, 154,0.7);
+  color: white;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 3px 2px;
+}
+.left-angle{
+  left: 47%;
+  z-index: 1;
+}
+.right-angle{
+  left: 53%;
+}
+.plot{
+  display: flex;
+  justify-content: center;
+}
+
+.js-plotly-plot .plotly .user-select-none {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px 5px;
+}
+
+/* Media queries */
+@media (min-width: 768px) and (max-width: 992px) {
+  .navbar {
+    padding: 10px 2%;
+  }
+  .scroll-cards {
+    width: 600px;
+   }
+   .left-angle{
+    left: 40%;
+  }
+  .right-angle{
+    left: 60%;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    padding: 10px 2%;
+    height: 155px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+  }
+  .navbar .logo {
+    padding: 0px 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .navbar .logo-signout {
+    display: block;
+    background-color: #0088a9;
+    padding: 3px 15px;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+  }
+  .navbar .right-signout {
+    display: none;
+  }
+  .logo-text {
+    font-size: 16px;
+  }
+  .scroll-cards {
+    width: 300px;
+     
+   }
+   .left-angle{
+    left: 30%;
+  }
+  .right-angle{
+    left: 60%;
+  }
+}
