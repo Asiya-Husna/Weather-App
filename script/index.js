@@ -248,7 +248,7 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
     width: 350,
     font: {
       color: "white",
-      family: "Times New Roman",
+      family: "Poppins",
     },
     paper_bgcolor: "rgba(36, 94, 154,0.6)",
     plot_bgcolor: "rgba(36, 94, 154,0.1)",
