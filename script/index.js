@@ -162,13 +162,13 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
     imageSrc = "./image/clear.png";
   } else if (weatherItem.weather[0].main == "Drizzle") {
     if (index == 0) {
-      bgHome.style.background = "url('./image/rain-bg.jpg')";
+      bgHome.style.backgroundImage = "url('./image/rain-bg.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
     imageSrc = "./image/drizzle.png";
   } else if (weatherItem.weather[0].main == "Rain") {
     if (index == 0) {
-      bgHome.style.background = "url('./image/rain-bg.jpg')";
+      bgHome.style.backgroundImage = "url('./image/rain-bg.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
     imageSrc = "./image/rain.png";
