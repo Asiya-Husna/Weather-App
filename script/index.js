@@ -90,7 +90,6 @@ const getCoordinates = () => {
         let storedData = [];
         storedData.push(name, lat, lon);
         localStorage.setItem(`${userEmail}`, JSON.stringify(storedData));
-        showAlert(`Default location is set as ${name}`, 'info');
       });
 
       getWeatherReport(name, lat, lon);
