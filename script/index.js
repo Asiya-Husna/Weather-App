@@ -146,6 +146,8 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
   d = d.split(" ");
   console.log(d);
 
+  cityName.innerHTML = cityInputVal.toUpperCase()
+
   //Setting background image and weather image based on condition
   let imageSrc;
   if (weatherItem.weather[0].main == "Clouds") {
