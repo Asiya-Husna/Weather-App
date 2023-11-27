@@ -103,12 +103,12 @@ function getWeatherReport(cityInputVal, lat, lon) {
       const uniqueDate = [];
       console.log(data);
       const futureForecast = data.list.filter((forecast) => {
+        defaultButton.innerHTML = 'change';
         const foreCastDate = new Date(forecast.dt_txt).getDate();
         if (!uniqueDate.includes(foreCastDate)) {
           return uniqueDate.push(foreCastDate);
         }
       });
-      defaultButton.innerHTML = 'change';
       console.log(futureForecast);
       //clearing previous data
       climateFutureReport.innerHTML = " ";
