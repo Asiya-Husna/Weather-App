@@ -100,7 +100,6 @@ function getWeatherReport(cityInputVal, lat, lon) {
   fetch(futureForecastAPI)
     .then((res) => res.json())
     .then((data) => {
-      defaultButton.innerHTML = 'change';
       const uniqueDate = [];
       console.log(data);
       const futureForecast = data.list.filter((forecast) => {
@@ -109,6 +108,7 @@ function getWeatherReport(cityInputVal, lat, lon) {
           return uniqueDate.push(foreCastDate);
         }
       });
+      defaultButton.innerHTML = 'change';
       console.log(futureForecast);
       //clearing previous data
       climateFutureReport.innerHTML = " ";
