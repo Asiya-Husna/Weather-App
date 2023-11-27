@@ -61,9 +61,9 @@ const getCoordinates = () => {
   aArray = [];
   bArray = [];
   const cityInputVal = cityInput.value.trim();
-  if (cityInputVal == "")
+  if (cityInputVal == ""){
     return showAlert("Please Enter your city name", "danger");
-
+  }
   let modifiedCityName = cityInputVal;
   if (cityInputVal.toLowerCase() === "canada") {
     modifiedCityName = "Ottawa";
@@ -79,8 +79,6 @@ const getCoordinates = () => {
   fetch(geoCodingApi)
     .then((res) => res.json())
     .then((data) => {
-      if (data.length == 0)
-        return showAlert(`No coordinates found for ${cityInputVal}`, danger);
       const { name, lat, lon } = data[0];
       console.log(name, lat, lon);
 
