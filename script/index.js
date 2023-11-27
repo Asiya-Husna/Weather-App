@@ -94,6 +94,8 @@ function getWeatherReport(cityInputVal, lat, lon) {
   let units = unitVal == "metric" ? "°C" : "°F";
   let windUnit = unitVal == "metric" ? "m/s" : "mph";
 
+  defaultButton.innerHTML = 'change'
+
 //fetching the weather data from the API using lattitude and longitude
   const futureForecastAPI = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unitVal}`;
   fetch(futureForecastAPI)
