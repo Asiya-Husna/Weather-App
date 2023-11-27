@@ -84,14 +84,6 @@ const getCoordinates = () => {
       const { name, lat, lon } = data[0];
       console.log(name, lat, lon);
 
-// Store the user's email in local storage for future use
-      defaultButton.addEventListener("click", () => {
-        cityInput.value = name;
-        let storedData = [];
-        storedData.push(name, lat, lon);
-        localStorage.setItem(`${userEmail}`, JSON.stringify(storedData));
-      });
-
       getWeatherReport(name, lat, lon);
     })
     .catch(() => {
@@ -150,47 +142,47 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
   let imageSrc;
   if (weatherItem.weather[0].main == "Clouds") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('../image/cloud-bg.jpg')";
+      bgHome.style.backgroundImage = "url('/image/cloud-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
-    imageSrc = "../image/clouds.png";
+    imageSrc = "/image/clouds.png";
   } else if (weatherItem.weather[0].main == "Clear") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('../image/sunny-bg.jpg')";
+      bgHome.style.backgroundImage = "url('/image/sunny-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
-    imageSrc = "../image/clear.png";
+    imageSrc = "/image/clear.png";
   } else if (weatherItem.weather[0].main == "Drizzle") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('../image/rain-bg.jpg')";
+      bgHome.style.backgroundImage = "url('/image/rain-bg.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
-    imageSrc = "../image/drizzle.png";
+    imageSrc = "/image/drizzle.png";
   } else if (weatherItem.weather[0].main == "Rain") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('../image/rain-bg.jpg')";
+      bgHome.style.backgroundImage = "url('/image/rain-bg.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
-    imageSrc = "../image/rain.png";
+    imageSrc = "/image/rain.png";
   } else if (weatherItem.weather[0].main == "Mist") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('../image/mist-bg.jpg')";
+      bgHome.style.backgroundImage = "url('/image/mist-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
-    imageSrc = "../image/mist.png";
+    imageSrc = "/image/mist.png";
   } else if (
     weatherItem.weather[0].main == "Smoke" ||
     weatherItem.weather[0].main == "Snow"
   ) {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('../image/snow-bg2.jpg')";
+      bgHome.style.backgroundImage = "url('/image/snow-bg2.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
-    imageSrc = "../image/snow.png";
+    imageSrc = "/image/snow.png";
   }
 
 //Line graph of temperature and humidity
-  xArray.push(Number(d[2]));
+  xArray.push(d[0]);
   yArray.push(weatherItem.main.temp);
 
 
@@ -218,15 +210,15 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
     paper_bgcolor: "rgba(36, 94, 154,0.6)",
     plot_bgcolor: "rgba(36, 94, 154,0.1)",
 
-    xaxis: { range: [xArray[0], xArray[5]], title: "Date" },
+    xaxis: { title: "Days" },
     yaxis: { range: [yMin, yMax], title: "Temp °C/°F" },
-    title: "Temperature vs. Date",
+    title: "Temperature",
   };
 
   // Display using Plotly
   Plotly.newPlot("myPlot", data, layout);
-
-  aArray.push(Number(d[2]));
+  
+  aArray.push(d[0]);
   bArray.push(weatherItem.main.humidity);
 
   bMax = Math.max(...bArray);
@@ -252,9 +244,9 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
     paper_bgcolor: "rgba(36, 94, 154,0.6)",
     plot_bgcolor: "rgba(36, 94, 154,0.1)",
 
-    xaxis: { range: [aArray[0], aArray[5]], title: "Date" },
+    xaxis: { title: "Days" },
     yaxis: { range: [bMin, bMax], title: "Humidity %" },
-    title: "Humidity vs. Date",
+    title: "Humidity",
   };
 
   Plotly.newPlot("myPlot1", data1, layout1);
@@ -295,8 +287,6 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
       )}${windUnit}</p>
                 </div>
             </div>
-            
-
             </div>`;
   }
 }
@@ -324,16 +314,6 @@ const getUserCoordinates = () => {
         .then((data) => {
           const { name, lat, lon } = data[0];
           cityInput.value = name;
-
-//Setting the user's default location in local storage when clicking the button
-          defaultButton.addEventListener("click", () => {
-            cityInput.value = name;
-            let storedData = [];
-            storedData.push(name, lat, lon);
-            localStorage.setItem(`${userEmail}`, JSON.stringify(storedData));
-            showAlert(`Default location is set as ${name}`, 'info');
-          });
-
           getWeatherReport(name, lat, lon);
         })
         .catch((error) => showAlert(error, "danger"));
@@ -353,6 +333,44 @@ cityInput.addEventListener("keyup",(e) => e.key === "Enter" && getCoordinates())
 unitValue.addEventListener("change", getCoordinates);
 cityInput.addEventListener("click", () => {
   cityInput.value = "";
+});
+
+// Store the user's email in local storage for future use
+defaultButton.addEventListener("click", () => {
+  let cityInputVal = cityInput.value.trim();
+  if (cityInputVal == "")
+    return showAlert("Please Enter your city name", "danger");
+
+
+  if (cityInputVal.toLowerCase() === "canada") {
+    cityInputVal = "Ottawa";
+  } else if (cityInputVal.toLowerCase() === "china") {
+    cityInputVal = "Beijing";
+  } else if (cityInputVal.toLowerCase() === "qatar") {
+    cityInputVal = "Doha";
+  }
+
+  const geoCodingApi = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInputVal}&limit=1&appid=${apiKey}`;
+
+  //Getting the latitude and longitude for the entered city name from direct geocoding API
+  fetch(geoCodingApi)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.length == 0)
+        return showAlert(`No coordinates found for ${cityInputVal}`, danger);
+      const { name, lat, lon } = data[0];
+      console.log(name, lat, lon);
+
+      let storedData = [];
+      storedData.push(name, lat, lon);
+      localStorage.setItem(`${userEmail}`, JSON.stringify(storedData));
+      showAlert(`Default location is set as ${name}`, 'info');
+  
+    })
+    .catch(() => {
+      showAlert("Error Occured while setting the default location", "danger");
+    });
+ 
 });
 
 //Getting the user's data from the local storage
