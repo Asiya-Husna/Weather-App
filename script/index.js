@@ -110,7 +110,7 @@ function getWeatherReport(cityInputVal, lat, lon) {
         }
       });
       console.log(futureForecast);
-      
+      defaultButton.innerHTML = 'change'
       //clearing previous data
       climateFutureReport.innerHTML = " ";
 
@@ -131,7 +131,7 @@ function getWeatherReport(cityInputVal, lat, lon) {
     });
 }
 function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
-  defaultButton.innerHTML = 'change'
+
   let d = new Date(weatherItem.dt_txt.split(" ")[0]);
   console.log(d)
   d = d.toString();
