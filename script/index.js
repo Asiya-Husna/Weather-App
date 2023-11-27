@@ -110,7 +110,6 @@ function getWeatherReport(cityInputVal, lat, lon) {
         }
       });
       console.log(futureForecast);
-      defaultButton.innerHTML = 'change'
       
       //clearing previous data
       climateFutureReport.innerHTML = " ";
@@ -138,7 +137,7 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
   d = d.split(" ");
   console.log(d);
 
-
+  defaultButton.innerHTML = 'change'
   //Setting background image and weather image based on condition
   let imageSrc;
   if (weatherItem.weather[0].main == "Clouds") {
