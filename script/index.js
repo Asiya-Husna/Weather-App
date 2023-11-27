@@ -131,14 +131,14 @@ function getWeatherReport(cityInputVal, lat, lon) {
     });
 }
 function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
+  defaultButton.innerHTML = 'change'
   let d = new Date(weatherItem.dt_txt.split(" ")[0]);
   console.log(d)
   d = d.toString();
   d = d.split(" ");
   console.log(d);
 
-  
-  defaultButton.innerHTML = 'change'
+
   //Setting background image and weather image based on condition
   let imageSrc;
   if (weatherItem.weather[0].main == "Clouds") {
