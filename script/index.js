@@ -137,7 +137,7 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
   d = d.split(" ");
   console.log(d);
 
-  defaultButton.innerHTML = 'change'
+  
   //Setting background image and weather image based on condition
   let imageSrc;
   if (weatherItem.weather[0].main == "Clouds") {
@@ -180,7 +180,7 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
     }
     imageSrc = "/image/snow.png";
   }
-
+  defaultButton.innerHTML = 'change'
 //Line graph of temperature and humidity
   xArray.push(d[0]);
   yArray.push(weatherItem.main.temp);
