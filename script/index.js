@@ -77,7 +77,9 @@ const getCoordinates = () => {
 
   //Getting the latitude and longitude for the entered city name from direct geocoding API
   fetch(geoCodingApi)
-    .then((res) => res.json())
+    .then((res) => {
+      return res.json()
+    })
     .then((data) => {
       const { name, lat, lon } = data[0];
       console.log(name, lat, lon);
@@ -150,31 +152,31 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
       bgHome.style.backgroundImage = "url('/Weather-App/image/cloud-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
-    imageSrc = "/image/clouds.png";
+    imageSrc = "/Weather-App/image/clouds.png";
   } else if (weatherItem.weather[0].main == "Clear") {
     if (index == 0) {
       bgHome.style.backgroundImage = "url('/Weather-App/image/sunny-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
-    imageSrc = "/image/clear.png";
+    imageSrc = "/Weather-App/image/clear.png";
   } else if (weatherItem.weather[0].main == "Drizzle") {
     if (index == 0) {
       bgHome.style.backgroundImage = "url('/Weather-App/image/rain-bg.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
-    imageSrc = "/image/drizzle.png";
+    imageSrc = "/Weather-App/image/drizzle.png";
   } else if (weatherItem.weather[0].main == "Rain") {
     if (index == 0) {
       bgHome.style.backgroundImage = "url('/Weather-App/image/rain-bg.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
-    imageSrc = "/image/rain.png";
+    imageSrc = "/Weather-App/image/rain.png";
   } else if (weatherItem.weather[0].main == "Mist") {
     if (index == 0) {
       bgHome.style.backgroundImage = "url('/Weather-App/image/mist-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
-    imageSrc = "/image/mist.png";
+    imageSrc = "/Weather-App/image/mist.png";
   } else if (
     weatherItem.weather[0].main == "Smoke" ||
     weatherItem.weather[0].main == "Snow"
@@ -183,7 +185,7 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
       bgHome.style.backgroundImage = "url('/Weather-App/image/snow-bg2.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
-    imageSrc = "/image/snow.png";
+    imageSrc = "/Weather-App/image/snow.png";
   }
 //Line graph of temperature and humidity
   xArray.push(d[0]);
