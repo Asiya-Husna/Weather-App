@@ -316,7 +316,9 @@ const getUserCoordinates = () => {
 //Getting City Name from the user location with the help of reverse geocoding API 
       const getcityName_URL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`;
       fetch(getcityName_URL)
-        .then((res) => res.json())
+        .then((res) => {
+          return res.json();
+        })
         .then((data) => {
           const { name, lat, lon } = data[0];
           cityInput.value = name;
@@ -360,7 +362,9 @@ defaultButton.addEventListener("click", () => {
 
   //Getting the latitude and longitude for the entered city name from direct geocoding API
   fetch(geoCodingApi)
-    .then((res) => res.json())
+    .then((res) => {
+      return res.json()
+    })
     .then((data) => {
       if (data.length == 0)
         return showAlert(`No coordinates found for ${cityInputVal}`, danger);
