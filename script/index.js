@@ -100,9 +100,9 @@ function getWeatherReport(cityInputVal, lat, lon) {
   fetch(futureForecastAPI)
     .then((res) => res.json())
     .then((data) => {
+      defaultButton.innerHTML = 'change';
       const uniqueDate = [];
       console.log(data);
-      defaultButton.innerHTML = 'change';
       const futureForecast = data.list.filter((forecast) => {
         const foreCastDate = new Date(forecast.dt_txt).getDate();
         if (!uniqueDate.includes(foreCastDate)) {
