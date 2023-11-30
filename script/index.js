@@ -73,7 +73,7 @@ const getCoordinates = () => {
     modifiedCityName = "Doha";
   }
 
-  const geoCodingApi = `http://api.openweathermap.org/geo/1.0/direct?q=${modifiedCityName}&limit=1&appid=${apiKey}`;
+  const geoCodingApi = `https://api.openweathermap.org/geo/1.0/direct?q=${modifiedCityName}&limit=1&appid=${apiKey}`;
 
   //Getting the latitude and longitude for the entered city name from direct geocoding API
   fetch(geoCodingApi)
@@ -101,7 +101,7 @@ const futureForecastAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=
 
   fetch(futureForecastAPI)
     .then((res) => {
-      res.json()
+      return res.json()
     })
     .then((data) => {
       const uniqueDate = [];
@@ -109,8 +109,7 @@ const futureForecastAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=
       console.log(data);
       const dataList = data.list;
       let futureForecast = dataList.filter((forecast) => { 
-        let foreCastDate = new Date(forecast.dt_txt).getDate();
-        defaultButton.innerHTML = 'change'; 
+        let foreCastDate = new Date(forecast.dt_txt).getDate(); 
         if (!uniqueDate.includes(foreCastDate)) {
           return uniqueDate.push(foreCastDate);
         }
@@ -148,43 +147,43 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
   let imageSrc;
   if (weatherItem.weather[0].main == "Clouds") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('./image/cloud-bg.jpg')";
+      bgHome.style.backgroundImage = "url('../image/cloud-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
-    imageSrc = "./image/clouds.png";
+    imageSrc = "../image/clouds.png";
   } else if (weatherItem.weather[0].main == "Clear") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('./image/sunny-bg.jpg')";
+      bgHome.style.backgroundImage = "url('../image/sunny-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
-    imageSrc = "./image/clear.png";
+    imageSrc = "../image/clear.png";
   } else if (weatherItem.weather[0].main == "Drizzle") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('./image/rain-bg.jpg')";
+      bgHome.style.backgroundImage = "url('../image/rain-bg.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
-    imageSrc = "./image/drizzle.png";
+    imageSrc = "../image/drizzle.png";
   } else if (weatherItem.weather[0].main == "Rain") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('./image/rain-bg.jpg')";
+      bgHome.style.backgroundImage = "url('../image/rain-bg.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
-    imageSrc = "./image/rain.png";
+    imageSrc = "../image/rain.png";
   } else if (weatherItem.weather[0].main == "Mist") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('./image/mist-bg.jpg')";
+      bgHome.style.backgroundImage = "url('../image/mist-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
-    imageSrc = "./image/mist.png";
+    imageSrc = "../image/mist.png";
   } else if (
     weatherItem.weather[0].main == "Smoke" ||
     weatherItem.weather[0].main == "Snow"
   ) {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('./image/snow-bg2.jpg')";
+      bgHome.style.backgroundImage = "url('../image/snow-bg2.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
-    imageSrc = "./image/snow.png";
+    imageSrc = "../image/snow.png";
   }
 //Line graph of temperature and humidity
   xArray.push(d[0]);
