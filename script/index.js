@@ -106,9 +106,10 @@ const futureForecastAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=
     .then((data) => {
       const uniqueDate = [];
       
-      defaultButton.innerHTML = 'change';
+      
       console.log(data);
       const futureForecast = data.list.filter((forecast) => {
+        defaultButton.innerHTML = 'change';
         const foreCastDate = new Date(forecast.dt_txt).getDate();
         if (!uniqueDate.includes(foreCastDate)) {
           return uniqueDate.push(foreCastDate);
