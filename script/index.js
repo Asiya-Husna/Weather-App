@@ -366,8 +366,6 @@ defaultButton.addEventListener("click", () => {
       return res.json()
     })
     .then((data) => {
-      if (data.length == 0)
-        return showAlert(`No coordinates found for ${cityInputVal}`, danger);
       const { name, lat, lon } = data[0];
       console.log(name, lat, lon);
 
