@@ -147,31 +147,31 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
   let imageSrc;
   if (weatherItem.weather[0].main == "Clouds") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('/image/cloud-bg.jpg')";
+      bgHome.style.backgroundImage = "url('/Weather-App/image/cloud-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
     imageSrc = "/image/clouds.png";
   } else if (weatherItem.weather[0].main == "Clear") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('/image/sunny-bg.jpg')";
+      bgHome.style.backgroundImage = "url('/Weather-App/image/sunny-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
     imageSrc = "/image/clear.png";
   } else if (weatherItem.weather[0].main == "Drizzle") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('/image/rain-bg.jpg')";
+      bgHome.style.backgroundImage = "url('/Weather-App/image/rain-bg.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
     imageSrc = "/image/drizzle.png";
   } else if (weatherItem.weather[0].main == "Rain") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('/image/rain-bg.jpg')";
+      bgHome.style.backgroundImage = "url('/Weather-App/image/rain-bg.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
     imageSrc = "/image/rain.png";
   } else if (weatherItem.weather[0].main == "Mist") {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('/image/mist-bg.jpg')";
+      bgHome.style.backgroundImage = "url('/Weather-App/image/mist-bg.jpg')";
       bgHome.style.backgroundPosition = "left";
     }
     imageSrc = "/image/mist.png";
@@ -180,7 +180,7 @@ function getDisplayWeather(cityInputVal, units, windUnit, weatherItem, index) {
     weatherItem.weather[0].main == "Snow"
   ) {
     if (index == 0) {
-      bgHome.style.backgroundImage = "url('/image/snow-bg2.jpg')";
+      bgHome.style.backgroundImage = "url('/Weather-App/image/snow-bg2.jpg')";
       bgHome.style.backgroundPosition = "bottom";
     }
     imageSrc = "/image/snow.png";
