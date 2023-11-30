@@ -97,7 +97,7 @@ function getWeatherReport(cityInputVal, lat, lon) {
 
 //fetching the weather data from the API using lattitude and longitude
 
-const futureForecastAPI = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unitVal}`;
+const futureForecastAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unitVal}`;
 
   fetch(futureForecastAPI)
     .then((res) => {
