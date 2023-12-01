@@ -156,6 +156,9 @@
 .scroll-cards::-webkit-scrollbar{
   display: none;
 }
+.scroll-cards {
+  scrollbar-width: none;
+}
 
 .angle{
   width: 40px;
